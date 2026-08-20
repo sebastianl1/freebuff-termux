@@ -17,23 +17,23 @@ bash install.sh
 
 ## Uso
 
-- `claude` — inicia la CLI interactiva
-- `claude --version` — muestra la version
-- `claude /login` o `export ANTHROPIC_API_KEY=tu_clave` — configura la autenticacion
+- `freebuff` — inicia la CLI interactiva
+- `freebuff --version` — muestra la version
+- `freebuff /login` o `export FREEBUFF_API_KEY=tu_clave` — configura la autenticacion
 - `bash install.sh --uninstall` — desinstala
 
 ## Fuentes de descarga (por prioridad)
 
-1. npm oficial (@anthropic-ai/claude-code-linux-arm64, version pineada)
+1. npm oficial (@codebuff-ai/freebuff-code-linux-arm64, version pineada)
 2. Espejo propio (release de este repositorio)
 
 Cada tarball se valida contra `versions.json` (SHA256) antes de instalar.
 
 ## Componentes que instala
 
-- `$PREFIX/bin/claude` — launcher nativo Android (C, compilado)
-- `$PREFIX/share/claude/` — binario real de Freebuff (build glibc)
-- `~/.claude/` — configuracion de Freebuff
+- `$PREFIX/bin/freebuff` — launcher nativo Android (C, compilado)
+- `$PREFIX/share/freebuff/` — binario real de Freebuff (build glibc)
+- `~/.freebuff/` — configuracion de Freebuff
 
 ## Enlaces
 

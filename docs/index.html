@@ -7,7 +7,7 @@
   <!-- SEO básico -->
   <title>Freebuff en Termux — Instalación nativa para Android ARM64</title>
   <meta name="description" content="Instala Freebuff de forma nativa en Termux para Android ARM64 (aarch64). Sin proot, sin máquinas virtuales. Guía paso a paso, comandos y solución de problemas para tener la terminal de IA de Codebuff en tu Android.">
-  <meta name="keywords" content="freebuff termux, claude code cli android, instalar claude code en android, claude code aarch64, claude code arm64, ai terminal android, claude code termux glibc, launcher claude code termux, cli de ia android, claude code sin proot, claude code cli instalacion, termux ai, claude code npm arm64, claude sonnet opus haiku termux">
+  <meta name="keywords" content="freebuff termux, freebuff cli android, instalar freebuff en android, freebuff aarch64, freebuff arm64, ai terminal android, freebuff termux glibc, launcher freebuff termux, cli de ia android, freebuff sin proot, freebuff cli instalacion, termux ai, freebuff npm arm64, freebuff agent termux">
   <meta name="author" content="Sebastian Laguna">
   <meta name="robots" content="index, follow">
   <meta name="revisit-after" content="7 days">
@@ -69,7 +69,7 @@
     "softwareVersion": "1.0.0",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": "1" },
-    "featureList": "Instalación nativa en Termux, sin proot, launcher nativo Android (Bionic), capa glibc de Termux, descarga multi-fuente (vendor oficial, espejo propio, caché local), modelos Claude Sonnet, Opus y Haiku"
+    "featureList": "Instalación nativa en Termux, sin proot, launcher nativo Android (Bionic), capa glibc de Termux, descarga multi-fuente (vendor oficial, espejo propio, caché local), modelos Freebuff Agent, Opus y Haiku"
   }
   </script>
 
@@ -82,7 +82,7 @@
       {
         "@type": "Question",
         "name": "¿Qué es Freebuff?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Freebuff es la terminal de IA oficial de Codebuff: un agente de programación que trabaja dentro de tu terminal con los modelos Claude. Este proyecto permite instalarlo de forma nativa en Termux para Android ARM64, sin emuladores ni proot." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Freebuff es la terminal de IA oficial de Codebuff: un agente de programación que trabaja dentro de tu terminal con los modelos Freebuff. Este proyecto permite instalarlo de forma nativa en Termux para Android ARM64, sin emuladores ni proot." }
       },
       {
         "@type": "Question",
@@ -97,7 +97,7 @@
       {
         "@type": "Question",
         "name": "¿Cómo funciona el launcher nativo y la capa glibc?",
-        "acceptedAnswer": { "@type": "Answer", "text": "El binario oficial de Freebuff es un build glibc, incompatible directo con Android/Bionic. El instalador compila un launcher en C (Bionic) que ejecuta el cargador glibc de Termux (ld-linux-aarch64.so.1) para lanzar claude.real de forma nativa y transparente." }
+        "acceptedAnswer": { "@type": "Answer", "text": "El binario oficial de Freebuff es un build glibc, incompatible directo con Android/Bionic. El instalador compila un launcher en C (Bionic) que ejecuta el cargador glibc de Termux (ld-linux-aarch64.so.1) para lanzar freebuff de forma nativa y transparente." }
       },
       {
         "@type": "Question",
@@ -112,17 +112,17 @@
       {
         "@type": "Question",
         "name": "¿Cómo desinstalo Freebuff?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ejecuta 'bash install.sh --uninstall' en el repositorio clonado. Esto elimina el launcher de $PREFIX/bin y el binario real, y ofrece eliminar la configuración. Los respaldos quedan en ~/backups/claude." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Ejecuta 'bash install.sh --uninstall' en el repositorio clonado. Esto elimina el launcher de $PREFIX/bin y el binario real, y ofrece eliminar la configuración. Los respaldos quedan en ~/backups/freebuff." }
       },
       {
         "@type": "Question",
         "name": "¿Cómo me autentico en Freebuff?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Freebuff es la terminal de IA de Codebuff. Tras instalar, ejecuta 'claude' en Termux y usa '/login' dentro de la interfaz para autenticarte con tu cuenta de Codebuff o API key." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Freebuff es la terminal de IA de Codebuff. Tras instalar, ejecuta 'freebuff' en Termux y usa '/login' dentro de la interfaz para autenticarte con tu cuenta de Codebuff o API key." }
       },
       {
         "@type": "Question",
         "name": "¿Qué pasa si el repositorio del vendor oficial desaparece?",
-        "acceptedAnswer": { "@type": "Answer", "text": "El instalador usa descarga multi-fuente por prioridad: vendor oficial (npm @anthropic-ai/freebuff-linux-arm64), espejo propio (GitHub Releases de este repo) y caché local como último recurso, siempre con verificación de integridad." }
+        "acceptedAnswer": { "@type": "Answer", "text": "El instalador usa descarga multi-fuente por prioridad: vendor oficial (npm freebuff), espejo propio (GitHub Releases de este repo) y caché local como último recurso, siempre con verificación de integridad." }
       }
     ]
   }
@@ -161,11 +161,11 @@
       --text: #e5e7eb;
       --muted: #9ca3af;
       --dim: #6b7280;
-      --purple: #d97757;
-      --pink: #b4542a;
-      --cyan: #d97757;
-      --green: #e8a98c;
-      --grad: linear-gradient(90deg, #d97757, #b4542a);
+      --purple: #06b6d4;
+      --pink: #0891b2;
+      --cyan: #06b6d4;
+      --green: #67e8f9;
+      --grad: linear-gradient(90deg, #06b6d4, #0891b2);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -176,12 +176,12 @@
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
-    ::selection { background: rgba(217, 119, 87, .35); color: #fff; }
+    ::selection { background: rgba(6, 182, 212, .35); color: #fff; }
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #2b3342; border-radius: 6px; }
     ::-webkit-scrollbar-thumb:hover { background: #3a4457; }
-    a { color: #e8a98c; text-decoration: none; }
+    a { color: #67e8f9; text-decoration: none; }
     a:hover { text-decoration: underline; }
     code { font-family: "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace; }
 
@@ -206,7 +206,7 @@
       background: var(--grad); color: #fff; font-weight: 600; font-size: .95rem;
       border: none; cursor: pointer; text-decoration: none; transition: transform .15s, box-shadow .15s;
     }
-    .btn:hover { text-decoration: none; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(217,119,87,.35); }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(6,182,212,.35); }
     .btn.ghost { background: transparent; border: 1px solid #374151; color: #d1d5db; box-shadow: none; }
     .btn.ghost:hover { border-color: var(--purple); color: #fff; }
     .btn.small { padding: 8px 16px; font-size: .85rem; }
@@ -218,9 +218,9 @@
       background: var(--card); color: #fff; border: 1px solid var(--border);
       border-radius: 8px; padding: 7px 12px; font-size: .85rem; font-weight: 600; font-family: inherit;
     }
-    .lang-btn:hover { border-color: rgba(217,119,87,.5); }
+    .lang-btn:hover { border-color: rgba(6,182,212,.5); }
     .lang-btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 1px; }
-    .lang-btn svg { width: 16px; height: 16px; color: #e8a98c; flex-shrink: 0; }
+    .lang-btn svg { width: 16px; height: 16px; color: #67e8f9; flex-shrink: 0; }
     .lang-btn .chev { width: 12px; height: 12px; transition: transform .25s; color: var(--muted); }
     .lang-wrap.open .lang-btn .chev { transform: rotate(180deg); }
     .lang-menu {
@@ -233,8 +233,8 @@
       display: flex; align-items: center; gap: 7px; padding: 7px 10px; border-radius: 7px;
       color: var(--muted); font-size: .85rem;
     }
-    .lang-menu a:hover { background: rgba(217,119,87,.14); color: #fff; text-decoration: none; }
-    .lang-menu a[aria-selected="true"] { background: rgba(217,119,87,.14); color: #fff; }
+    .lang-menu a:hover { background: rgba(6,182,212,.14); color: #fff; text-decoration: none; }
+    .lang-menu a[aria-selected="true"] { background: rgba(6,182,212,.14); color: #fff; }
     .lang-menu .check { display: none; color: var(--green); font-weight: 700; }
     .lang-menu a[aria-selected="true"] .check { display: inline; }
 
@@ -242,15 +242,15 @@
     .hero { position: relative; text-align: center; padding: 84px 22px 40px; overflow: hidden; }
     .hero::before {
       content: ""; position: absolute; inset: -20% -10% auto; height: 420px; z-index: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(217,119,87,.22), transparent 62%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(6,182,212,.22), transparent 62%);
     }
     .hero > * { position: relative; z-index: 1; }
     .badge-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
     .pill {
       display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 999px;
-      background: rgba(217,119,87,.12); border: 1px solid rgba(217,119,87,.35); color: #e8a98c; font-size: .8rem; font-weight: 600;
+      background: rgba(6,182,212,.12); border: 1px solid rgba(6,182,212,.35); color: #67e8f9; font-size: .8rem; font-weight: 600;
     }
-    .pill.green { background: rgba(217,119,87,.1); border-color: rgba(217,119,87,.3); color: #e8a98c; }
+    .pill.green { background: rgba(6,182,212,.1); border-color: rgba(6,182,212,.3); color: #67e8f9; }
     h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); line-height: 1.15; color: #fff; font-weight: 800; letter-spacing: -.02em; }
     h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .tagline { color: var(--muted); font-size: 1.12rem; max-width: 640px; margin: 18px auto 0; }
@@ -261,7 +261,7 @@
     .term-wrap { margin: 46px auto 0; max-width: 760px; text-align: left; }
     .term {
       background: #0d1017; border: 1px solid #2b3342; border-radius: 14px; overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(217,119,87,.08);
+      box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(6,182,212,.08);
     }
     .term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #141926; border-bottom: 1px solid #232a36; }
     .term-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -291,7 +291,7 @@
       counter-increment: step; content: counter(step);
       position: absolute; top: -16px; left: 22px; width: 34px; height: 34px; border-radius: 50%;
       background: var(--grad); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 18px rgba(217,119,87,.4);
+      box-shadow: 0 6px 18px rgba(6,182,212,.4);
     }
     .step h3 { color: #fff; font-size: 1.05rem; margin-bottom: 8px; }
     .step p { color: var(--muted); font-size: .92rem; }
@@ -299,10 +299,10 @@
     /* Features */
     .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
     .feat { display: flex; gap: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color .2s, transform .2s; }
-    .feat:hover { border-color: rgba(217,119,87,.5); transform: translateY(-2px); }
+    .feat:hover { border-color: rgba(6,182,212,.5); transform: translateY(-2px); }
     .feat-icon {
       flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      background: rgba(217,119,87,.14); border: 1px solid rgba(217,119,87,.3); color: #e8a98c;
+      background: rgba(6,182,212,.14); border: 1px solid rgba(6,182,212,.3); color: #67e8f9;
     }
     .feat-icon svg { width: 24px; height: 24px; }
     .feat h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
@@ -319,8 +319,8 @@
       background: #1a2130; color: var(--muted); border: 1px solid #2b3342; border-radius: 7px; cursor: pointer;
     }
     .term-code .c-copy:hover { color: #fff; border-color: var(--purple); }
-    .term-code .c-copy.ok { color: var(--green); border-color: rgba(217,119,87,.5); }
-    .cmd { color: #e8a98c; font-weight: 600; }
+    .term-code .c-copy.ok { color: var(--green); border-color: rgba(6,182,212,.5); }
+    .cmd { color: #67e8f9; font-weight: 600; }
     .cm { color: var(--muted); }
 
     /* Tabs instalación */
@@ -345,25 +345,25 @@
     .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
     .faq-a p { padding: 0 20px 18px; color: var(--muted); font-size: .92rem; }
 
-    /* claude */
-    .claude-box { max-width: 760px; margin: 0 auto; }
-    .claude-box h3 { color: #fff; font-size: 1.2rem; margin-bottom: 10px; }
+    /* freebuff */
+    .freebuff-box { max-width: 760px; margin: 0 auto; }
+    .freebuff-box h3 { color: #fff; font-size: 1.2rem; margin-bottom: 10px; }
     .model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 8px; }
     .model-card {
       display: flex; flex-direction: column; gap: 8px; text-align: left;
       background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
       cursor: pointer; transition: border-color .2s, transform .2s; color: inherit; font: inherit; line-height: inherit;
     }
-    .model-card:hover { border-color: rgba(217,119,87,.5); transform: translateY(-2px); }
+    .model-card:hover { border-color: rgba(6,182,212,.5); transform: translateY(-2px); }
     .model-card:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
     .model-card .model-name { color: #fff; font-weight: 600; font-size: .98rem; }
     .model-card .model-id {
       font-family: "SF Mono", "Cascadia Code", Consolas, monospace; font-size: .78rem;
-      color: #e8a98c; background: rgba(217,119,87,.1); border: 1px solid rgba(217,119,87,.25);
+      color: #67e8f9; background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.25);
       padding: 5px 10px; border-radius: 7px; overflow-wrap: anywhere; word-break: break-word; line-height: 1.45;
     }
     .model-card .model-copy { color: var(--dim); font-size: .72rem; }
-    .model-card.ok { border-color: rgba(217,119,87,.5); }
+    .model-card.ok { border-color: rgba(6,182,212,.5); }
     .model-card.ok .model-copy { color: var(--green); }
 
     /* Footer */
@@ -433,7 +433,7 @@
   <nav>
     <div class="nav-inner">
       <a class="nav-logo" href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#e8a98c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 10h6M9 14h4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 10h6M9 14h4"/></svg>
         Freebuff <span class="grad" style="-webkit-text-fill-color:initial">· Termux</span>
       </a>
       <div class="nav-links">
@@ -486,9 +486,9 @@
             <span class="term-dot" style="background:#ff5f57"></span>
             <span class="term-dot" style="background:#febc2e"></span>
             <span class="term-dot" style="background:#28c840"></span>
-            <span class="title">Termux — claude</span>
+            <span class="title">Termux — freebuff</span>
           </div>
-          <img src="imagenes/claude.jpg" alt="Screenshot de Freebuff ejecutándose en Termux dentro de Android ARM64">
+          <img src="imagenes/freebuff.jpg" alt="Screenshot de Freebuff ejecutándose en Termux dentro de Android ARM64">
         </div>
       </div>
     </section>
@@ -512,7 +512,7 @@
           <p data-i18n="funcion.sub">Un launcher nativo Android (Bionic) invoca el cargador glibc de Termux para ejecutar el binario oficial de Freebuff. Sin emuladores ni configuraciones manuales.</p>
         </div>
         <div class="steps">
-          <div class="step reveal"><h3 data-i18n="funcion.step1_t">Launcher nativo</h3><p data-i18n="funcion.step1_d">Un launcher compilado en C para Android/Bionic se instala como <code>claude</code> en <code>$PREFIX/bin</code>.</p></div>
+          <div class="step reveal"><h3 data-i18n="funcion.step1_t">Launcher nativo</h3><p data-i18n="funcion.step1_d">Un launcher compilado en C para Android/Bionic se instala como <code>freebuff</code> en <code>$PREFIX/bin</code>.</p></div>
           <div class="step reveal"><h3 data-i18n="funcion.step2_t">Capa glibc de Termux</h3><p data-i18n="funcion.step2_d">Usa el cargador <code>ld-linux-aarch64.so.1</code> de la capa glibc oficial para lanzar el binario real.</p></div>
           <div class="step reveal"><h3 data-i18n="funcion.step3_t">Descarga multi-fuente</h3><p data-i18n="funcion.step3_d">Binario desde vendor oficial → espejo propio → caché local. Todo con verificación de integridad.</p></div>
         </div>
@@ -607,30 +607,30 @@
         </div>
 
         <div class="term-code reveal" style="max-width:640px;margin:0 auto 46px">
-          <pre><code><span class="cmd">claude</span>              <span class="cm" data-i18n="uso.c1"># Iniciar la CLI interactiva</span>
+          <pre><code><span class="cmd">freebuff</span>              <span class="cm" data-i18n="uso.c1"># Iniciar la CLI interactiva</span>
 <span class="cmd">/login</span>            <span class="cm" data-i18n="uso.c2"># Autenticar con tu cuenta de Codebuff</span>
-<span class="cmd">claude --version</span>   <span class="cm" data-i18n="uso.c3"># Verificar la versión</span>
+<span class="cmd">freebuff --version</span>   <span class="cm" data-i18n="uso.c3"># Verificar la versión</span>
 <span class="cmd">bash install.sh</span>      <span class="cm" data-i18n="uso.c4"># Actualizar a la última versión</span></code></pre>
           <button class="c-copy" data-copy data-i18n="copy.btn">Copiar</button>
         </div>
 
-        <div class="claude-box reveal">
-          <h3 data-i18n="claude.title">Freebuff en tu Android</h3>
-          <p style="color:var(--muted)" data-i18n="claude.desc">La terminal de IA oficial de <a href="https://www.anthropic.com/" rel="noopener">Codebuff</a>, ejecutándose de forma nativa en Termux. Autentica con tu cuenta de Codebuff o una API key, y empieza a programar:</p>
+        <div class="freebuff-box reveal">
+          <h3 data-i18n="freebuff.title">Freebuff en tu Android</h3>
+          <p style="color:var(--muted)" data-i18n="freebuff.desc">La terminal de IA oficial de <a href="https://www.codebuff.com/" rel="noopener">Codebuff</a>, ejecutándose de forma nativa en Termux. Autentica con tu cuenta de Codebuff o una API key, y empieza a programar:</p>
           <div class="term-code" style="margin-top:14px">
-            <pre><code><span class="cmd">claude</span>
-<span class="cmd">/login</span> <span class="cm" data-i18n="claude.example">"Escribe un script en Python"</span></code></pre>
+            <pre><code><span class="cmd">freebuff</span>
+<span class="cmd">/login</span> <span class="cm" data-i18n="freebuff.example">"Escribe un script en Python"</span></code></pre>
             <button class="c-copy" data-copy data-i18n="copy.btn">Copiar</button>
           </div>
         </div>
 
         <div class="reveal" style="max-width:760px;margin:44px auto 0">
-          <h3 style="color:#fff;font-size:1.2rem;margin-bottom:6px" data-i18n="models.title">Modelos de Claude disponibles</h3>
+          <h3 style="color:#fff;font-size:1.2rem;margin-bottom:6px" data-i18n="models.title">Modelos disponibles disponibles</h3>
           <p style="color:var(--muted);font-size:.92rem;margin-bottom:18px" data-i18n="models.hint">Freebuff funciona con los modelos de Codebuff; elige el que prefieras con <code>/model</code>.</p>
           <div class="model-grid">
-            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Claude Sonnet</h3></div></div>
-            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Claude Opus</h3></div></div>
-            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Claude Haiku</h3></div></div>
+            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Freebuff Agent</h3></div></div>
+            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Freebuff Pro</h3></div></div>
+            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Freebuff Mini</h3></div></div>
             <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div><div><h3 style="color:#fff;font-size:.98rem">Modelo consciente del contexto</h3></div></div>
           </div>
         </div>
@@ -646,15 +646,15 @@
           <p data-i18n="faq.sub">Resolvemos las dudas más comunes sobre la instalación de Freebuff en Termux.</p>
         </div>
         <div class="faq">
-          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq1.q">¿Qué es Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq1.a">Freebuff es la terminal de IA oficial de Codebuff: un agente de programación que trabaja dentro de tu terminal con los modelos Claude. Este proyecto permite instalarlo de forma nativa en Termux para Android ARM64, sin emuladores ni proot.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq1.q">¿Qué es Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq1.a">Freebuff es la terminal de IA oficial de Codebuff: un agente de programación que trabaja dentro de tu terminal con los modelos Freebuff. Este proyecto permite instalarlo de forma nativa en Termux para Android ARM64, sin emuladores ni proot.</p></div></div>
           <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq2.q">¿Necesito root o proot para instalarlo?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq2.a">No. Un launcher nativo compilado para Android (Bionic) invoca el cargador glibc de Termux (<code>ld-linux-aarch64.so.1</code>) para ejecutar el binario oficial de Freebuff. No se requieren root, proot, máquinas virtuales ni Cloud Shell.</p></div></div>
           <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq3.q">¿Por qué debo instalar Termux desde F-Droid y no desde Google Play?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq3.a">La versión de Termux en Google Play está desactualizada y abandonada. La versión oficial se mantiene en <a href="https://f-droid.org/packages/com.termux/">F-Droid</a>, que es la única compatible con este instalador.</p></div></div>
-          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq4.q">¿Cómo funciona el launcher nativo y la capa glibc?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq4.a">El binario oficial de Freebuff es un build glibc, incompatible directo con Android/Bionic. El instalador compila un launcher en C (Bionic) que ejecuta el cargador glibc de Termux (<code>ld-linux-aarch64.so.1</code>) para lanzar <code>claude.real</code> de forma nativa y transparente.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq4.q">¿Cómo funciona el launcher nativo y la capa glibc?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq4.a">El binario oficial de Freebuff es un build glibc, incompatible directo con Android/Bionic. El instalador compila un launcher en C (Bionic) que ejecuta el cargador glibc de Termux (<code>ld-linux-aarch64.so.1</code>) para lanzar <code>freebuff</code> de forma nativa y transparente.</p></div></div>
           <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq5.q">¿Es compatible con mi dispositivo Android?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq5.a">El instalador solo funciona en dispositivos ARM64 (aarch64). Verifica tu arquitectura con <code>uname -m</code>; debe mostrar <code>aarch64</code>.</p></div></div>
           <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq6.q">¿Cómo actualizo Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq6.a">Vuelve a ejecutar <code>bash install.sh</code> en el repositorio clonado para descargar la última versión. El instalador descarga desde vendor oficial → espejo propio → caché local, siempre con verificación de integridad.</p></div></div>
-          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq7.q">¿Cómo desinstalo Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq7.a">Ejecuta <code>bash install.sh --uninstall</code> en el repositorio clonado. Esto elimina el launcher de <code>$PREFIX/bin</code> y el binario real, y ofrece eliminar la configuración. Los respaldos quedan en <code>~/backups/claude</code>.</p></div></div>
-          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq8.q">¿Cómo me autentico en Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq8.a">Ejecuta <code>claude</code> en Termux y escribe <code>/login</code> dentro de la interfaz. Se abre el flujo oficial de Codebuff para iniciar sesión con tu cuenta o usar una API key.</p></div></div>
-          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq9.q">¿Qué pasa si el repositorio del vendor oficial desaparece?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq9.a">El instalador usa descarga <strong>multi-fuente</strong> por prioridad: <strong>vendor oficial</strong> (npm <code>@anthropic-ai/freebuff-linux-arm64</code>), <strong>espejo propio</strong> (GitHub Releases de este repo) y <strong>caché local</strong> como último recurso. Si una fuente cae, pasa automáticamente a la siguiente.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq7.q">¿Cómo desinstalo Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq7.a">Ejecuta <code>bash install.sh --uninstall</code> en el repositorio clonado. Esto elimina el launcher de <code>$PREFIX/bin</code> y el binario real, y ofrece eliminar la configuración. Los respaldos quedan en <code>~/backups/freebuff</code>.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq8.q">¿Cómo me autentico en Freebuff?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq8.a">Ejecuta <code>freebuff</code> en Termux y escribe <code>/login</code> dentro de la interfaz. Se abre el flujo oficial de Codebuff para iniciar sesión con tu cuenta o usar una API key.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-q"><span data-i18n="faq9.q">¿Qué pasa si el repositorio del vendor oficial desaparece?</span><span class="chev">▼</span></button><div class="faq-a"><p data-i18n="faq9.a">El instalador usa descarga <strong>multi-fuente</strong> por prioridad: <strong>vendor oficial</strong> (npm <code>freebuff</code>), <strong>espejo propio</strong> (GitHub Releases de este repo) y <strong>caché local</strong> como último recurso. Si una fuente cae, pasa automáticamente a la siguiente.</p></div></div>
         </div>
       </div>
     </section>
@@ -683,16 +683,16 @@
           <ul>
             <li><a href="https://github.com/sebastianl1/freebuff-termux" rel="noopener" data-i18n="footer.links.repo">Repositorio</a></li>
             <li><a href="https://sebastianl1.github.io/Portafolio/" rel="noopener" data-i18n="footer.links.portfolio">Portafolio del autor</a></li>
-            <li><a href="https://github.com/anthropics/freebuff" rel="noopener" data-i18n="footer.links.claude">Freebuff oficial</a></li>
+            <li><a href="https://github.com/codebuffs/freebuff" rel="noopener" data-i18n="footer.links.freebuff">Freebuff oficial</a></li>
             <li><a href="https://f-droid.org/packages/com.termux/" rel="noopener" data-i18n="footer.links.termux">Termux en F-Droid</a></li>
-            <li><a href="https://github.com/anthropics/freebuff" rel="noopener" data-i18n="footer.links.vendor">Vendor oficial</a></li>
+            <li><a href="https://github.com/codebuffs/freebuff" rel="noopener" data-i18n="footer.links.vendor">Vendor oficial</a></li>
           </ul>
         </div>
         <div>
           <h4 data-i18n="footer.cred_h">Créditos</h4>
           <ul>
             <li><a href="https://sebastianl1.github.io/Portafolio/" rel="noopener">Sebastian Laguna</a> <span data-i18n="footer.cred.author">— Autor</span></li>
-            <li><a href="https://github.com/anthropics/freebuff" rel="noopener">Freebuff</a> <span data-i18n="footer.cred.claude">— Terminal de IA oficial</span></li>
+            <li><a href="https://github.com/codebuffs/freebuff" rel="noopener">Freebuff</a> <span data-i18n="footer.cred.freebuff">— Terminal de IA oficial</span></li>
             <li><a href="https://f-droid.org/packages/com.termux/" rel="noopener">Termux</a> <span data-i18n="footer.cred.termux">— Entorno</span></li>
           </ul>
         </div>
@@ -702,7 +702,7 @@
         <span data-i18n="footer.love">Hecho con ♥ para la comunidad Termux</span>
       </div>
       <div class="foot-tags" data-i18n="footer.tags">
-        claude code termux · claude code cli · instalar claude code android · claude code arm64 · ai terminal · claude sonnet opus haiku · termux ai
+        freebuff termux · freebuff cli · instalar freebuff android · freebuff arm64 · ai terminal · freebuff agent · termux ai
       </div>
     </div>
   </footer>
@@ -717,7 +717,7 @@
       "stat.native": "Nativo Android", "stat.proot": "Proot / VMs", "stat.space": "Espacio requerido", "stat.oss": "Comando de instalación",
       "funcion.eyebrow": "Cómo funciona", "funcion.title": "Binario oficial, sin recompilar nada",
       "funcion.sub": "Un launcher nativo Android (Bionic) invoca el cargador glibc de Termux para ejecutar el binario oficial de Freebuff. Sin emuladores ni configuraciones manuales.",
-      "funcion.step1_t": "Launcher nativo", "funcion.step1_d": "Un launcher compilado en C para Android/Bionic se instala como <code>claude</code> en <code>$PREFIX/bin</code>.",
+      "funcion.step1_t": "Launcher nativo", "funcion.step1_d": "Un launcher compilado en C para Android/Bionic se instala como <code>freebuff</code> en <code>$PREFIX/bin</code>.",
       "funcion.step2_t": "Capa glibc de Termux", "funcion.step2_d": "Usa el cargador <code>ld-linux-aarch64.so.1</code> de la capa glibc oficial para lanzar el binario real.",
       "funcion.step3_t": "Descarga multi-fuente", "funcion.step3_d": "Binario desde vendor oficial → espejo propio → caché local. Todo con verificación de integridad.",
       "feat.eyebrow": "Características", "feat.title": "Hecho para Termux, listo para ti",
@@ -737,31 +737,31 @@
       "uso.eyebrow": "Uso", "uso.title": "Empieza a usar Freebuff",
       "uso.sub": "Comandos principales para trabajar con la terminal de IA desde tu Android.",
       "uso.c1": "# Iniciar la CLI interactiva", "uso.c2": "# Autenticar con tu cuenta de Codebuff", "uso.c3": "# Verificar la versión", "uso.c4": "# Actualizar a la última versión",
-      "claude.title": "Freebuff en tu Android",
-      "claude.desc": "La terminal de IA oficial de <a href=\"https://www.anthropic.com/\" rel=\"noopener\">Codebuff</a>, ejecutándose de forma nativa en Termux. Autentica con tu cuenta de Codebuff o una API key, y empieza a programar:",
-      "claude.example": "\"Escribe un script en Python\"",
-      "models.title": "Modelos de Claude disponibles", "models.hint": "Freebuff funciona con los modelos de Codebuff; elige el que prefieras con <code>/model</code>.",
+      "freebuff.title": "Freebuff en tu Android",
+      "freebuff.desc": "La terminal de IA oficial de <a href=\"https://www.codebuff.com/\" rel=\"noopener\">Codebuff</a>, ejecutándose de forma nativa en Termux. Autentica con tu cuenta de Codebuff o una API key, y empieza a programar:",
+      "freebuff.example": "\"Escribe un script en Python\"",
+      "models.title": "Modelos disponibles disponibles", "models.hint": "Freebuff funciona con los modelos de Codebuff; elige el que prefieras con <code>/model</code>.",
       "model.copy": "Click para copiar", "copy.btn": "Copiar", "copied": "¡Copiado!",
       "faq.eyebrow": "FAQ", "faq.title": "Preguntas frecuentes",
       "faq.sub": "Resolvemos las dudas más comunes sobre la instalación de Freebuff en Termux.",
-      "faq1.q": "¿Qué es Freebuff?", "faq1.a": "Freebuff es la terminal de IA oficial de Codebuff: un agente de programación que trabaja dentro de tu terminal con los modelos Claude. Este proyecto permite instalarlo de forma nativa en Termux para Android ARM64, sin emuladores ni proot.",
+      "faq1.q": "¿Qué es Freebuff?", "faq1.a": "Freebuff es la terminal de IA oficial de Codebuff: un agente de programación que trabaja dentro de tu terminal con los modelos Freebuff. Este proyecto permite instalarlo de forma nativa en Termux para Android ARM64, sin emuladores ni proot.",
       "faq2.q": "¿Necesito root o proot para instalarlo?", "faq2.a": "No. Un launcher nativo compilado para Android (Bionic) invoca el cargador glibc de Termux (<code>ld-linux-aarch64.so.1</code>) para ejecutar el binario oficial de Freebuff. No se requieren root, proot, máquinas virtuales ni Cloud Shell.",
       "faq3.q": "¿Por qué debo instalar Termux desde F-Droid y no desde Google Play?", "faq3.a": "La versión de Termux en Google Play está desactualizada y abandonada. La versión oficial se mantiene en <a href=\"https://f-droid.org/packages/com.termux/\">F-Droid</a>, que es la única compatible con este instalador.",
-      "faq4.q": "¿Cómo funciona el launcher nativo y la capa glibc?", "faq4.a": "El binario oficial de Freebuff es un build glibc, incompatible directo con Android/Bionic. El instalador compila un launcher en C (Bionic) que ejecuta el cargador glibc de Termux (<code>ld-linux-aarch64.so.1</code>) para lanzar <code>claude.real</code> de forma nativa y transparente.",
+      "faq4.q": "¿Cómo funciona el launcher nativo y la capa glibc?", "faq4.a": "El binario oficial de Freebuff es un build glibc, incompatible directo con Android/Bionic. El instalador compila un launcher en C (Bionic) que ejecuta el cargador glibc de Termux (<code>ld-linux-aarch64.so.1</code>) para lanzar <code>freebuff</code> de forma nativa y transparente.",
       "faq5.q": "¿Es compatible con mi dispositivo Android?", "faq5.a": "El instalador solo funciona en dispositivos ARM64 (aarch64). Verifica tu arquitectura con <code>uname -m</code>; debe mostrar <code>aarch64</code>.",
       "faq6.q": "¿Cómo actualizo Freebuff?", "faq6.a": "Vuelve a ejecutar <code>bash install.sh</code> en el repositorio clonado para descargar la última versión. El instalador descarga desde vendor oficial → espejo propio → caché local, siempre con verificación de integridad.",
-      "faq7.q": "¿Cómo desinstalo Freebuff?", "faq7.a": "Ejecuta <code>bash install.sh --uninstall</code> en el repositorio clonado. Esto elimina el launcher de <code>$PREFIX/bin</code> y el binario real, y ofrece eliminar la configuración. Los respaldos quedan en <code>~/backups/claude</code>.",
-      "faq8.q": "¿Cómo me autentico en Freebuff?", "faq8.a": "Ejecuta <code>claude</code> en Termux y escribe <code>/login</code> dentro de la interfaz. Se abre el flujo oficial de Codebuff para iniciar sesión con tu cuenta o usar una API key.",
-      "faq9.q": "¿Qué pasa si el repositorio del vendor oficial desaparece?", "faq9.a": "El instalador usa descarga <strong>multi-fuente</strong> por prioridad: <strong>vendor oficial</strong> (npm <code>@anthropic-ai/freebuff-linux-arm64</code>), <strong>espejo propio</strong> (GitHub Releases de este repo) y <strong>caché local</strong> como último recurso. Si una fuente cae, pasa automáticamente a la siguiente.",
+      "faq7.q": "¿Cómo desinstalo Freebuff?", "faq7.a": "Ejecuta <code>bash install.sh --uninstall</code> en el repositorio clonado. Esto elimina el launcher de <code>$PREFIX/bin</code> y el binario real, y ofrece eliminar la configuración. Los respaldos quedan en <code>~/backups/freebuff</code>.",
+      "faq8.q": "¿Cómo me autentico en Freebuff?", "faq8.a": "Ejecuta <code>freebuff</code> en Termux y escribe <code>/login</code> dentro de la interfaz. Se abre el flujo oficial de Codebuff para iniciar sesión con tu cuenta o usar una API key.",
+      "faq9.q": "¿Qué pasa si el repositorio del vendor oficial desaparece?", "faq9.a": "El instalador usa descarga <strong>multi-fuente</strong> por prioridad: <strong>vendor oficial</strong> (npm <code>freebuff</code>), <strong>espejo propio</strong> (GitHub Releases de este repo) y <strong>caché local</strong> como último recurso. Si una fuente cae, pasa automáticamente a la siguiente.",
       "footer.about_h": "Freebuff · Termux", "footer.about_d": "Instalación nativa de Freebuff en Termux para Android ARM64. Sin proot, sin VMs, sin Cloud Shell. Terminal de IA de Codebuff para programar en tu Android.",
       "footer.res_h": "Recursos", "footer.res.install": "Instalación", "footer.res.commands": "Comandos", "footer.res.faq": "FAQ", "footer.res.readme": "README",
-      "footer.links_h": "Enlaces", "footer.links.repo": "Repositorio", "footer.links.portfolio": "Portafolio del autor", "footer.links.claude": "Freebuff oficial", "footer.links.termux": "Termux en F-Droid", "footer.links.vendor": "Vendor oficial",
-      "footer.cred_h": "Créditos", "footer.cred.author": "— Autor", "footer.cred.claude": "— Terminal de IA oficial", "footer.cred.termux": "— Entorno",
+      "footer.links_h": "Enlaces", "footer.links.repo": "Repositorio", "footer.links.portfolio": "Portafolio del autor", "footer.links.freebuff": "Freebuff oficial", "footer.links.termux": "Termux en F-Droid", "footer.links.vendor": "Vendor oficial",
+      "footer.cred_h": "Créditos", "footer.cred.author": "— Autor", "footer.cred.freebuff": "— Terminal de IA oficial", "footer.cred.termux": "— Entorno",
       "footer.bottom": "© 2026 Freebuff · Termux — Licencia MIT", "footer.love": "Hecho con ♥ para la comunidad Termux",
-      "footer.tags": "claude code termux · claude code cli · instalar claude code android · claude code arm64 · ai terminal · claude sonnet opus haiku · termux ai",
+      "footer.tags": "freebuff termux · freebuff cli · instalar freebuff android · freebuff arm64 · ai terminal · freebuff agent · termux ai",
       "meta.title": "Freebuff en Termux — Instalación nativa para Android ARM64",
       "meta.description": "Instala Freebuff de forma nativa en Termux para Android ARM64 (aarch64). Sin proot ni máquinas virtuales. La terminal de IA de Codebuff con guía paso a paso.",
-      "meta.keywords": "claude code termux, claude code cli android, terminal de ia android, instalar claude code en android, claude code aarch64, ai terminal android, claude sonnet opus haiku termux, claude code"
+      "meta.keywords": "freebuff termux, freebuff cli android, terminal de ia android, instalar freebuff en android, freebuff aarch64, ai terminal android, freebuff agent termux, freebuff"
     };
 
     (function () {
@@ -846,7 +846,7 @@
 
       // ── i18n ──
       var SUPPORTED = ['es', 'en', 'pt', 'fr', 'de', 'zh'];
-      var STORE_KEY = 'claude-lang';
+      var STORE_KEY = 'freebuff-lang';
       var NAMES = { es: 'Español', en: 'English', pt: 'Português', fr: 'Français', de: 'Deutsch', zh: '中文' };
       var dict = null;
       var current = 'es';

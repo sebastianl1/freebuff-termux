@@ -1,7 +1,7 @@
 # Freebuff para Termux — Instalación nativa en Android
 
 <p align="center">
-  <img src="imagenes/Freebuff.jpg" alt="Freebuff en Termux - Instalación nativa" width="600">
+  <img src="imagenes/freebuff.jpg" alt="Freebuff en Termux - Instalación nativa" width="600">
 </p>
 
 **Instalación nativa de Freebuff en Termux para Android ARM64 (aarch64).**
@@ -134,19 +134,19 @@ El instalador es interactivo y te guiara paso a paso:
 
 | Componente | Ruta | Descripcion |
 |------------|------|-------------|
-| `claude` | `$PREFIX/bin/claude` | Launcher nativo Android (C, compilado) |
+| `freebuff` | `$PREFIX/bin/freebuff` | Launcher nativo Android (C, compilado) |
 | `freebuff` | `$HOME/.config/manicode/` | Binario real de Freebuff (build glibc) |
 
 ### Como funciona
 
-El binario `claude` es un launcher compilado nativamente para Android (Bionic libc)
+El binario `freebuff` es un launcher compilado nativamente para Android (Bionic libc)
 que se encarga de:
 
 - Ejecutar el binario oficial de Codebuff (`freebuff`) a través del cargador
   dinámico glibc de Termux (`ld-linux-aarch64.so.1`)
 - Apuntar al almacén de certificados TLS de Termux (`SSL_CERT_FILE`)
-- Configurar `TMPDIR`/`CLAUDE_CODE_TMPDIR` al prefijo de Termux (no hay `/tmp` escribible)
-- Configurar `CLAUDE_CODE_EXECPATH` para que los subprocesos (grep/find/rg) se
+- Configurar `TMPDIR`/`FREEBUFF_TMPDIR` al prefijo de Termux (no hay `/tmp` escribible)
+- Configurar `FREEBUFF_EXECPATH` para que los subprocesos (grep/find/rg) se
   re-ejecuten a través del launcher
 - Desactivar el auto-updater (`DISABLE_AUTOUPDATER=1`), que de otro modo
   sobrescribiría el binario con uno glibc que no puede ejecutarse en Android
@@ -160,7 +160,7 @@ Todo esto sin necesidad de `proot`, wrappers manuales ni configuraciones complej
 ### Iniciar Freebuff
 
 ```bash
-claude
+freebuff
 ```
 
 ### Verificar version
@@ -172,23 +172,23 @@ freebuff --version
 ### Iniciar sesión con Codebuff
 
 ```bash
-claude
+freebuff
 ```
 
 En la primera ejecución, Freebuff te guiará para autenticarte con tu cuenta
 de Codebuff (OAuth) o puedes usar una clave de API:
 
 ```bash
-export ANTHROPIC_API_KEY=tu_clave
-claude
+export FREEBUFF_API_KEY=tu_clave
+freebuff
 ```
 
 ### Comandos principales
 
 | Comando | Descripcion |
 |---------|-------------|
-| `claude` | Iniciar la TUI interactiva |
-| `claude "pregunta"` | Consulta directa sin entrar a la TUI |
+| `freebuff` | Iniciar la TUI interactiva |
+| `freebuff "pregunta"` | Consulta directa sin entrar a la TUI |
 | `freebuff --version` | Mostrar version |
 | `freebuff --help` | Ayuda y comandos |
 | `bash install.sh` | Actualizar a la ultima version |
@@ -264,7 +264,7 @@ esto automaticamente:
 Si aun asi no se abre, pega la URL manualmente en el navegador. Ten en
 cuenta que el codigo de verificacion que muestra la pagina **expira en
 aproximadamente 1 minuto**, asi que copialo y pegalo en Termux de inmediato,
-sin cerrar `claude`.
+sin cerrar `freebuff`.
 
 ---
 
@@ -272,9 +272,9 @@ sin cerrar `claude`.
 
 Proyecto orientado a: **Termux**, **Android**, **Freebuff**, **Codebuff**,
 **inteligencia artificial**, **asistente de IA en terminal**, **aarch64**,
-**ARM64**, **glibc**, **claude.ai**, **instalación sin proot**.
-Búsquedas frecuentes: "claude code termux", "instalar claude code en android",
-"claude termux", "claude code android", "anthropic termux".
+**ARM64**, **glibc**, **freebuff.ai**, **instalación sin proot**.
+Búsquedas frecuentes: "freebuff code termux", "instalar freebuff code en android",
+"freebuff termux", "freebuff code android", "codebuff termux".
 
 ---
 
@@ -286,12 +286,12 @@ siga funcionando si alguno desaparece, hay **3 capas de protección**:
 | Capa | Qué hace |
 |------|----------|
 | **Fuente primaria** | Descarga el binario oficial desde el registry npm de Codebuff (siempre `latest`) |
-| **Mirror propio** | Si npm falla, descarga el mismo tarball desde un release de **este repositorio** (`claude-<version>`) |
+| **Mirror propio** | Si npm falla, descarga el mismo tarball desde un release de **este repositorio** (`freebuff-<version>`) |
 | **Caché local** | Si las dos anteriores fallan, instala desde `~/.cache/freebuff/` (se guarda tras la primera instalación) |
 
 ### Qué pasa si el registry npm de Codebuff desaparece
 
-- Quienes ya instalaron claude alguna vez: ejecuta `bash install.sh --offline`
+- Quienes ya instalaron freebuff alguna vez: ejecuta `bash install.sh --offline`
   no es necesario — el instalador intenta automáticamente npm → mirror → caché.
 - El mirror se actualiza manualmente con `bash scripts/mirror.sh`.
 
