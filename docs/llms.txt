@@ -1,0 +1,42 @@
+# Freebuff para Termux
+
+> Instalacion nativa de Freebuff en Termux para Android ARM64 (aarch64). Sin proot, sin VMs, sin Cloud Shell. Descarga el binario oficial y lo ejecuta con un launcher nativo Android a traves de la capa glibc de Termux.
+
+## Instalacion
+
+- [README](https://github.com/sebastianl1/freebuff-termux#readme)
+- [Landing page](https://sebastianl1.github.io/freebuff-termux/): instrucciones y FAQ en 6 idiomas
+
+Instalacion rapida en Termux:
+
+```
+git clone https://github.com/sebastianl1/freebuff-termux.git
+cd freebuff-termux
+bash install.sh
+```
+
+## Uso
+
+- `claude` — inicia la CLI interactiva
+- `claude --version` — muestra la version
+- `claude /login` o `export ANTHROPIC_API_KEY=tu_clave` — configura la autenticacion
+- `bash install.sh --uninstall` — desinstala
+
+## Fuentes de descarga (por prioridad)
+
+1. npm oficial (@anthropic-ai/claude-code-linux-arm64, version pineada)
+2. Espejo propio (release de este repositorio)
+
+Cada tarball se valida contra `versions.json` (SHA256) antes de instalar.
+
+## Componentes que instala
+
+- `$PREFIX/bin/claude` — launcher nativo Android (C, compilado)
+- `$PREFIX/share/claude/` — binario real de Freebuff (build glibc)
+- `~/.claude/` — configuracion de Freebuff
+
+## Enlaces
+
+- Repositorio: https://github.com/sebastianl1/freebuff-termux
+- Landing: https://sebastianl1.github.io/freebuff-termux/
+- Licencia: MIT

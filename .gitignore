@@ -1,0 +1,10 @@
+.opencode/
+*.log
+*.tar.gz
+*.tgz
+__pycache__/
+*.pyc
+
+.env
+.env.*
+!.env.example

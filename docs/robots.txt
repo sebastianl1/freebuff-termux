@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sebastianl1.github.io/freebuff-termux/sitemap.xml

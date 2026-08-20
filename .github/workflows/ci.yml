@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Instalar node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Instalar herramientas
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq shellcheck
+
+      - name: Bash - sintaxis y shellcheck
+        run: |
+          bash -n install.sh scripts/mirror.sh
+          shellcheck -S error install.sh scripts/mirror.sh
+
+      - name: JS - sintaxis
+        run: |
+          for f in docs/lang/*.js; do node --check "$f"; done
+
+      - name: Descargas solo HTTPS en install.sh
+        run: |
+          ! grep -nE "curl .*http://" install.sh
+          grep -q "set -e" install.sh
+          echo "install.sh OK (https + set -e)"
+
+      - name: versions.json valido
+        run: |
+          python3 -c "
+          import json, re
+          d = json.load(open('versions.json'))
+          assert d.get('version', '').startswith(('v', '2', '1', '3')) or re.fullmatch(r'[\d.]+', d['version']), 'version invalida'
+          assert len(d.get('sha256', '')) == 64, 'sha256 debe ser hex de 64 chars'
+          assert re.fullmatch(r'[0-9a-f]{64}', d['sha256']), 'sha256 no es hex valido'
+          assert all(u.startswith('https://') for u in d.get('urls', [])), 'urls deben ser https'
+          print('versions.json OK:', d['version'])
+          "
+
+      - name: Claves i18n completas en todos los idiomas
+        run: |
+          python3 -c "
+          import re
+          from pathlib import Path
+
+          def keys(fn):
+              src = Path(fn).read_text(encoding='utf-8')
+              return set(re.findall(r'^\s*\"([\w.]+)\":', src, re.M))
+
+          base = keys('docs/lang/en.js')
+          for lang in ('de', 'fr', 'pt', 'zh'):
+              k = keys(f'docs/lang/{lang}.js')
+              missing = sorted(base - k)
+              assert not missing, f'{lang}.js no tiene las claves: {missing}'
+          print('i18n OK')
+          "
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar tests
+        run: |
+          pip install pytest
+          python3 -m pytest tests/ -q

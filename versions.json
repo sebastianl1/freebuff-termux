@@ -1,0 +1,9 @@
+{
+  "version": "0.0.152",
+  "sha256": "9340e8e9a7eed0b14a67892d17e93ee8cc786fb83d0ff57bbc581d2458005d2e",
+  "urls": [
+    "https://registry.npmjs.org/freebuff/-/freebuff-0.0.152.tgz",
+    "https://codebuff.com/api/releases/download/0.0.152/freebuff-linux-arm64.tar.gz",
+    "https://github.com/sebastianl1/freebuff-termux/releases/download/freebuff-0.0.152/freebuff-linux-arm64.tar.gz"
+  ]
+}

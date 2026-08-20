@@ -1,0 +1,25 @@
+{
+  "name": "freebuff-termux",
+  "version": "2.0.0",
+  "description": "Instalación nativa de Freebuff en Termux para Android ARM64 — glibc nativo sin proot",
+  "main": "index.js",
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "pytest tests/ -q",
+    "lint": "shellcheck -S error install.sh scripts/mirror.sh && python3 -m pytest tests/ -q"
+  },
+  "keywords": ["freebuff", "termux", "android", "aarch64", "arm64", "glibc", "codebuff", "ai", "cli"],
+  "author": "Sebastian Laguna",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastianl1/freebuff-termux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sebastianl1/freebuff-termux/issues"
+  },
+  "homepage": "https://sebastianl1.github.io/freebuff-termux/"
+}
